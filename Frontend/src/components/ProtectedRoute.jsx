@@ -34,7 +34,7 @@ function ProtectedRoute({ children }) {
             setIsAuthorized(false);
             return;
         }
-        const decoded = jwtDecode(token);
+        const decoded = jwtDecode(token); // decode token to get expiration time of token
         const tokenExpiration = decoded.exp;
         const now = Date.now() / 1000; // Convert to seconds
 
@@ -49,7 +49,7 @@ function ProtectedRoute({ children }) {
         return <div>Loading...</div>; // Or any other loading indicator
     }
 
-    return isAuthorized ? children : <Navigate to="/register" />;  // if isAuthorized then go to the children page else to login 
+    return isAuthorized ? children : <Navigate to="/login" />;  // if isAuthorized then go to the children page else to login 
 }
 
 export default ProtectedRoute;
