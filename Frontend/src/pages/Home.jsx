@@ -42,6 +42,8 @@ export default function Home() {
     api.post('/api/notes/', data).then((res) => {
       if (res.status === 201) {
         alert('Note created ')
+        setContent('')
+        setTitle('')
         getNotes()
       }
       else {
@@ -53,6 +55,8 @@ export default function Home() {
   return (
     <div className="home-container w-full md:w-11/12 lg:w-[900px]  h-[100vh] mx-auto">
       <div className="homepage-wrapper  py-6 px-5">
+
+        {/* create note form */}
         <div className="Create-note-form">
           <form onSubmit={handleSubmit} className="write-notes flex flex-col  space-y-5 ">
             <h2 className="font-medium text-xl">Write note </h2>
@@ -71,13 +75,16 @@ export default function Home() {
             <button type='submit' className='bg-sky-500 hover:bg-sky-700 text-white font-medium text-lg px-4 py-1 rounded-md w-fit'>Save</button>
           </form>
         </div>
-
+        <hr className="my-4 h-[2px] bg-gray-500" />
         {/* all notes of user  */}
-        <div className="notes-container">
-          {notes.map((note) => {
-            return <Note key={note.id} title={note.title} content={note.conten}/>
-          })
-          }
+        <div className="notes-container mt-8 ">
+          <h2 className="font-medium text-xl">Your Notes </h2>
+          <div className="flex flex-col mt-4 space-y-4">
+            {notes.map((note) => {
+              return <Note key={note.id} noteId={note.id} title={note.title} content={note.content} deleteNote={deleteNote} />
+            })
+            }
+          </div>
         </div>
       </div>
 

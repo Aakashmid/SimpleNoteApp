@@ -31,6 +31,7 @@ class CreateUserView(generics.CreateAPIView):
 '''
 - default authentication class to all views is IsAuthenticated
 '''
+
 class CreateListNoteView(generics.ListCreateAPIView):
     serializer_class=NoteSerializer
     def get_queryset(self):
