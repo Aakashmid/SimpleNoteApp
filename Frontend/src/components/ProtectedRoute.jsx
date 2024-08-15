@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";  // for decoding info from token like expiration time etc
 import api from "../Api";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
+import { CircularProgress } from "@mui/material";
 
 function ProtectedRoute({ children }) {
     const [isAuthorized, setIsAuthorized] = useState(null);
@@ -14,7 +15,7 @@ function ProtectedRoute({ children }) {
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN);
         try {
-            const res = await api.post("/api/token/refresh/", {
+            const res = await api.post("/api/token/refresh", {
                 refresh: refreshToken,
             });
             if (res.status === 200) {
@@ -46,7 +47,7 @@ function ProtectedRoute({ children }) {
     };
 
     if (isAuthorized === null) {
-        return <div>Loading...</div>; // Or any other loading indicator
+        return <div className="flex justify-center mt-10"><CircularProgress/></div>; // Or any other loading indicator
     }
 
     return isAuthorized ? children : <Navigate to="/login" />;  // if isAuthorized then go to the children page else to login 
