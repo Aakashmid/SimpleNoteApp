@@ -5,7 +5,6 @@ import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import Topbar from './components/Topbar'
 import { useState } from 'react'
 
 function App() {
@@ -22,11 +21,6 @@ function App() {
 
   return (
     <>
-      <header>
-        <ProtectedRoute setUser={setUser}>
-          <Topbar />
-        </ProtectedRoute>
-      </header>
       <BrowserRouter>
         <Routes>
           <Route
