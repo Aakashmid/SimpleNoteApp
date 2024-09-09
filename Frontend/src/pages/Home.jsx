@@ -81,7 +81,7 @@ export default function Home() {
           <h2 className="font-medium text-xl">Your Notes </h2>
           <div className="flex flex-col mt-4 space-y-4">
             {notes.map((note) => {
-              return <Note key={note.id}  note={note} onDelete={deleteNote} />
+              return <Note key={note.id} note={note} onDelete={deleteNote} />
             })
             }
           </div>
